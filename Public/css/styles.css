@@ -41,6 +41,6 @@ body {
   border-top-right-radius: 0;
 }
 
-.btn-lg{
-  padding-bottom: 10px;
+.logo {
+  mix-blend-mode: multiply;
 }
