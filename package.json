@@ -1,0 +1,29 @@
+{
+  "name": "t_tdo",
+  "version": "1.0.0",
+  "description": "Make your own to do list ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kexu02/T_TDo.git"
+  },
+  "keywords": [
+    "To",
+    "Do",
+    "List"
+  ],
+  "author": "Ke, Emma, Catherine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kexu02/T_TDo/issues"
+  },
+  "homepage": "https://github.com/kexu02/T_TDo#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "request": "^2.88.2"
+  }
+}

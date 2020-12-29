@@ -7,6 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.79.0">
+    <meta name="google-signin-client_id" content="149501504783-dref7iqm8am321j4pf8baudkhvidvkt5.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <title>Sign In Page</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
@@ -43,16 +45,17 @@
 
 
     <!-- Custom styles for this template -->
-    <link href="styles.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
   </head>
   <body class="text-center">
 
 <main class="form-signin">
-  <form>
+  <form action="/" method="post">
     <img class="mb-4" src="" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me"> Remember me
