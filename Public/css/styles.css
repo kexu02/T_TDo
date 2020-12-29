@@ -43,4 +43,5 @@ body {
 
 .logo {
   mix-blend-mode: multiply;
+  padding-bottom: 10px;
 }
