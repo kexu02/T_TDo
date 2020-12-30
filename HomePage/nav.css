@@ -129,7 +129,7 @@ a {
 /*collapse*/
 
 .collapse {
-    grid-template-columns: 20px max-content 1fr;
+    grid-template-columns: 1fr 2fr 0fr;
 }
 
 .collapse__link {
