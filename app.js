@@ -6,15 +6,16 @@ const ejs = require("ejs");
 const app = express();
 
 app.use(express.static("Public"));
+app.use(express.static("HomePage"));
 app.use(bodyParser.urlencoded({extended: true}));
 
-// homepage
+// sign in page
 app.get("/", function(req, res) {
     res.sendFile(__dirname + "/signIn.html");
 })
 
 app.post("/", function(req, res) {
-    res.sendFile(__dirname + "/homepage.html");
+    res.sendFile(__dirname + "/HomePage/homepage.html");
 })
 
 // connects to webpage
