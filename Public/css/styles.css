@@ -50,3 +50,8 @@ body {
     mix-blend-mode: multiply;
     padding-bottom: 10px;
 }
+
+.text {
+    padding-top: 20px;
+    font-size: 15px;
+}
