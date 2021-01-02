@@ -23,6 +23,7 @@ const userSchema = {
 const User = new mongoose.model("User", userSchema);
 
 // sign in page
+
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/signIn.html");
 })
@@ -42,9 +43,15 @@ app.post("/", function(req, res) {
   });
 })
 
-// app.get("/signUp", function(req, res) {
-//   res.sendFile(__dirname + "/signUp.html");
-// })
+ //sign up page
+
+app.post("/toSignUp", function(req, res) {
+  res.sendFile(__dirname + "/signUp.html");
+})
+
+app.get("/signUp", function(req, res) {
+  res.sendFile(__dirname + "/signUp.html");
+})
 
 app.post("/signUp", function(req, res) {
   const newUser = new User({
