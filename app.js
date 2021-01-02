@@ -42,9 +42,9 @@ app.post("/", function(req, res) {
   });
 })
 
-app.get("/signUp", function(req, res) {
-  res.sendFile(__dirname + "/signUp.html");
-})
+// app.get("/signUp", function(req, res) {
+//   res.sendFile(__dirname + "/signUp.html");
+// })
 
 app.post("/signUp", function(req, res) {
   const newUser = new User({
