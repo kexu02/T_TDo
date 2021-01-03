@@ -56,7 +56,7 @@ app.get("/", function(req, res) {
   } else {
     res.redirect("/signIn");
   }
-})
+});
 
 // sign in page
 app.get("/signIn", function(req, res) {
