@@ -1,8 +1,9 @@
-const express = require("express");
+require('dotenv').config();
 const bodyParser = require("body-parser");
 const request = require("request");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
+const encrypt = require("mongoose-encryption");
 
 const app = express();
 
@@ -12,18 +13,27 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-mongoose.connect("mongodb+srv://admin-ke:password123!@cluster0.gwmp3.mongodb.net/T_TDO", { useNewUrlParser: true }, { useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://admin-ke:password123!@cluster0.gwmp3.mongodb.net/T_TDO", {
+  useNewUrlParser: true
+}, {
+  useUnifiedTopology: true
+});
 
 // creating user schema
-const userSchema = {
+const userSchema = new mongoose.Schema({
   email: String,
   password: String
-};
+});
+
+// encryption
+userSchema.plugin(encrypt, {
+  secret: process.env.SECRET,
+  encryptedFields: ["password"]
+});
 
 const User = new mongoose.model("User", userSchema);
 
 // sign in page
-
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/signIn.html");
 })
@@ -32,7 +42,9 @@ app.post("/", function(req, res) {
   const email = req.body.email;
   const password = req.body.password;
 
-  User.findOne({email: email}, function(err, foundAcc) {
+  User.findOne({
+    email: email
+  }, function(err, foundAcc) {
     if (!err) {
       if (foundAcc) {
         if (foundAcc.password === password) {
@@ -43,8 +55,7 @@ app.post("/", function(req, res) {
   });
 })
 
- //sign up page
-
+//sign up page
 app.post("/toSignUp", function(req, res) {
   res.sendFile(__dirname + "/signUp.html");
 })
