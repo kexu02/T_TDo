@@ -97,6 +97,11 @@ app.post("/signUp", function(req, res) {
     });
 });
 
+// log out
+app.post("/logOut", function(req, res) {
+  res.redirect("/signIn");
+});
+
 // connects to webpage
 app.listen(process.env.PORT || 3000, function() {
 

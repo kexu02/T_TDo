@@ -60,11 +60,12 @@
               <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
               <span class="nav__name">Settings</span>
             </a>
-            <a href="signIn.html" class="nav__link">
-              <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
-              <span class="nav__name">Log Out</span>
-            </a>
-
+            <form action="/logOut" method="post">
+              <button class="logOutButton" type="submit">
+                <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                <span class="nav__name">Log Out</span>
+              </button>
+            </form>
           </div>
         </div>
       </nav>
