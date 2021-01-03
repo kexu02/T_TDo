@@ -52,7 +52,7 @@ passport.deserializeUser(User.deserializeUser());
 // homepage
 app.get("/", function(req, res) {
     if (req.isAuthenticated()) {
-        res.sendFile(__dirname + "/homepage.html");
+        res.sendFile(__dirname + "/HomePage/homepage.html");
     } else {
         res.redirect("/signIn");
     }
