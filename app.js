@@ -13,14 +13,14 @@ app.use(express.static("Public"));
 app.use(express.static("HomePage"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: true
+    extended: true
 }));
 
 //session initial configuration
 app.use(session({
-  secret:"ssss",
-  resave: false,
-  saveUninitialized: false
+    secret: "ssss",
+    resave: false,
+    saveUninitialized: false
 }));
 
 //set up session with passport
@@ -28,17 +28,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 mongoose.connect("mongodb+srv://admin-ke:password123!@cluster0.gwmp3.mongodb.net/T_TDO", {
-  useNewUrlParser: true
+    useNewUrlParser: true
 }, {
-  useUnifiedTopology: true
+    useUnifiedTopology: true
 });
 mongoose.set('useUnifiedTopology', true);
 mongoose.set("useCreateIndex", true);
 
 // creating user schema
 const userSchema = new mongoose.Schema({
-  username: String,
-  password: String
+    username: String,
+    password: String
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -51,50 +51,50 @@ passport.deserializeUser(User.deserializeUser());
 
 // homepage
 app.get("/", function(req, res) {
-  if (req.isAuthenticated()) {
-    res.sendFile(__dirname + "/HomePage/homepage.html");
-  } else {
-    res.redirect("/signIn");
-  }
+    if (req.isAuthenticated()) {
+        res.sendFile(__dirname + "/homepage.html");
+    } else {
+        res.redirect("/signIn");
+    }
 });
 
 // sign in page
 app.get("/signIn", function(req, res) {
-  res.sendFile(__dirname + "/signIn.html");
+    res.sendFile(__dirname + "/signIn.html");
 });
 
 app.post("/signIn", function(req, res) {
-   const user = new User({
-     username: req.body.username,
-     password: req.body.password
-   });
+    const user = new User({
+        username: req.body.username,
+        password: req.body.password
+    });
 
-   req.login(user, function(err) {
-     if (!err) {
-       passport.authenticate("local")(req, res, function() {
-         res.redirect("/");
-       })
-     }
-   });
+    req.login(user, function(err) {
+        if (!err) {
+            passport.authenticate("local")(req, res, function() {
+                res.redirect("/");
+            })
+        }
+    });
 });
 
 //sign up page
 app.post("/toSignUp", function(req, res) {
-  res.redirect("/signUp");
+    res.redirect("/signUp");
 });
 
 app.get("/signUp", function(req, res) {
-  res.sendFile(__dirname + "/signUp.html");
+    res.sendFile(__dirname + "/signUp.html");
 });
 
 app.post("/signUp", function(req, res) {
-  User.register({username: req.body.username}, req.body.password, function(err, user) {
-    if (!err) {
-      passport.authenticate("local")(req, res, function() {
-        res.redirect("/");
-      });
-    }
-  });
+    User.register({ username: req.body.username }, req.body.password, function(err, user) {
+        if (!err) {
+            passport.authenticate("local")(req, res, function() {
+                res.redirect("/");
+            });
+        }
+    });
 });
 
 // connects to webpage
