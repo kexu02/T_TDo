@@ -1,84 +1,103 @@
-require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-const encrypt = require("mongoose-encryption");
+const session = require('express-session');
+const passport = require("passport");
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const app = express();
 
 app.use(express.static("Public"));
 app.use(express.static("HomePage"));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+//session initial configuration
+app.use(session({
+  secret:"ssss",
+  resave: false,
+  saveUninitialized: false
+}));
+
+//set up session with passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 mongoose.connect("mongodb+srv://admin-ke:password123!@cluster0.gwmp3.mongodb.net/T_TDO", {
   useNewUrlParser: true
 }, {
   useUnifiedTopology: true
 });
+mongoose.set('useUnifiedTopology', true);
+mongoose.set("useCreateIndex", true);
 
 // creating user schema
 const userSchema = new mongoose.Schema({
-  email: String,
+  username: String,
   password: String
 });
 
-// encryption
-userSchema.plugin(encrypt, {
-  secret: process.env.SECRET,
-  encryptedFields: ["password"]
-});
+userSchema.plugin(passportLocalMongoose);
 
 const User = new mongoose.model("User", userSchema);
 
-// sign in page
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// homepage
 app.get("/", function(req, res) {
+  if (req.isAuthenticated()) {
+    res.sendFile(__dirname + "/HomePage/homepage.html");
+  } else {
+    res.redirect("/signIn");
+  }
+})
+
+// sign in page
+app.get("/signIn", function(req, res) {
   res.sendFile(__dirname + "/signIn.html");
-})
+});
 
-app.post("/", function(req, res) {
-  const email = req.body.email;
-  const password = req.body.password;
+app.post("/signIn", function(req, res) {
+   const user = new User({
+     username: req.body.username,
+     password: req.body.password
+   });
 
-  User.findOne({
-    email: email
-  }, function(err, foundAcc) {
-    if (!err) {
-      if (foundAcc) {
-        if (foundAcc.password === password) {
-          res.sendFile(__dirname + "/HomePage/homepage.html");
-        }
-      }
-    }
-  });
-})
+   req.login(user, function(err) {
+     if (!err) {
+       passport.authenticate("local")(req, res, function() {
+         res.redirect("/");
+       })
+     }
+   });
+});
 
 //sign up page
 app.post("/toSignUp", function(req, res) {
-  res.sendFile(__dirname + "/signUp.html");
-})
+  res.redirect("/signUp");
+});
 
 app.get("/signUp", function(req, res) {
   res.sendFile(__dirname + "/signUp.html");
-})
+});
 
 app.post("/signUp", function(req, res) {
-  const newUser = new User({
-    email: req.body.email,
-    password: req.body.password
-  });
-
-  newUser.save(function(err) {
+  User.register({username: req.body.username}, req.body.password, function(err, user) {
     if (!err) {
-      res.sendFile(__dirname + "/signIn.html");
+      passport.authenticate("local")(req, res, function() {
+        res.redirect("/");
+      });
     }
   });
-})
+});
 
 // connects to webpage
 app.listen(process.env.PORT || 3000, function() {
 
-})
+});
