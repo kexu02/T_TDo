@@ -1,4 +1,3 @@
-
 {
   "name": "t_tdo",
   "version": "1.0.0",
@@ -34,6 +33,7 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "webpack": "^5.11.1"
   }
 }

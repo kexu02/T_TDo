@@ -1,4 +1,6 @@
 require('dotenv').config();
+const dotenv = require('dotenv');
+const webpack = require("webpack");
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
@@ -18,6 +20,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+module.exports = () => {
+  const env = dotenv.config().parsed,
+    envKeys = Object.keys(env).reduce((prev, next) => {
+      prev[`process.env.${next}`] = JSON.stringify(env[next]);
+      return prev;
+    }, {});
+
+  return {
+    plugins: [
+      new webpack.DefinePlugin(envKeys)
+    ]
+  };
 
 //session initial configuration
 app.use(session({
