@@ -1,4 +1,4 @@
-require("dotenv").config();
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
@@ -64,13 +64,13 @@ passport.deserializeUser(function(id, done) {
 
 // Google OAuth
 passport.use(new GoogleStrategy({
-    clientID: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "https://ttdo.herokuapp.com/auth/google/T_TDO",
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: "https://ttdo.herokuapp.com/auth/google/ttdo",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     passReqToCallback: true
   },
-  function(request, accessToken, refsreshToken, profile, done) {
+  function(accessToken, refsreshToken, profile, done) {
     User.findOrCreate({ googleId: profile.id }, function (err, user) {
       return done(err, user);
     });
@@ -82,7 +82,7 @@ app.get("/auth/google",
   passport.authenticate('google', { scope: ["profile"] })
 );
 
-app.get("/auth/google/T_TDO",
+app.get("/auth/google/ttdo",
     passport.authenticate('google', { failureRedirect: "/signIn" }),
     function(req, res) {
       res.redirect("/");
