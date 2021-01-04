@@ -1,4 +1,5 @@
 require("dotenv").config();
+const dotenv=require("dotenv");
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
@@ -66,11 +67,11 @@ passport.deserializeUser(function(id, done) {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "https://fierce-falls-82195.herokuapp.com/auth/google/T_TDO",
+    callbackURL: "https://ttdo.herokuapp.com/auth/google/T_TDO",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     passReqToCallback: true
   },
-  function(request, accessToken, refreshToken, profile, done) {
+  function(request, accessToken, refsreshToken, profile, done) {
     User.findOrCreate({ googleId: profile.id }, function (err, user) {
       return done(err, user);
     });
