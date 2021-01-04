@@ -95,7 +95,8 @@ app.get("/signIn", function(req, res) {
 app.post("/signIn", function(req, res) {
     const user = new User({
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        googleId: req.body.googleId
     });
 
     req.login(user, function(err) {
@@ -117,7 +118,7 @@ app.get("/signUp", function(req, res) {
 });
 
 app.post("/signUp", function(req, res) {
-    User.register({ username: req.body.username }, req.body.password, function(err, user) {
+    User.register({ username: req.body.username, googleId: req.body.googleId }, req.body.password, function(err, user) {
         if (!err) {
             passport.authenticate("local")(req, res, function() {
                 res.redirect("/");
@@ -132,10 +133,10 @@ app.get("/auth/google",
 );
 
 app.get("/auth/google/T_TDO",
-    passport.authenticate("google", {
-        successRedirect: "/",
-        failureRedirect: "/signIn"
-}));
+    passport.authenticate("google", {failureRedirect: "/signIn"}),
+    function(req, res) {
+      res.redirect("/");
+    });
 
 // log out
 app.get("/logout", function(req, res) {
