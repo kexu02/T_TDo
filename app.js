@@ -1,15 +1,14 @@
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-const session = require('express-session');
+const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
-
-require('dotenv').config();
 
 const app = express();
 
@@ -69,7 +68,7 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: "https://fierce-falls-82195.herokuapp.com/auth/google/T_TDO",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
-    passReqToCallback   : true
+    passReqToCallback: true
   },
   function(request, accessToken, refreshToken, profile, done) {
     User.findOrCreate({ googleId: profile.id }, function (err, user) {
@@ -96,7 +95,6 @@ app.post("/signIn", function(req, res) {
     const user = new User({
         username: req.body.username,
         password: req.body.password,
-        googleId: req.body.googleId
     });
 
     req.login(user, function(err) {
@@ -118,7 +116,7 @@ app.get("/signUp", function(req, res) {
 });
 
 app.post("/signUp", function(req, res) {
-    User.register({ username: req.body.username, googleId: req.body.googleId }, req.body.password, function(err, user) {
+    User.register({ username: req.body.username }, req.body.password, function(err, user) {
         if (!err) {
             passport.authenticate("local")(req, res, function() {
                 res.redirect("/");
