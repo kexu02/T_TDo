@@ -71,6 +71,7 @@ passport.use(new GoogleStrategy({
     passReqToCallback: true
   },
   function(accessToken, refsreshToken, profile, done) {
+    console.log(profile);
     User.findOrCreate({ googleId: profile.id }, function (err, user) {
       return done(err, user);
     });
@@ -79,7 +80,7 @@ passport.use(new GoogleStrategy({
 
 // Google Sign in
 app.get("/auth/google",
-  passport.authenticate('google', { scope: ["profile"] })
+  passport.authenticate('google', { scope: ["https://www.googleapis.com/auth/userinfo.profile"] })
 );
 
 app.get("/auth/google/ttdo",
