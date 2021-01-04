@@ -7,14 +7,12 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.79.0">
-    <meta name="google-signin-client_id" content="149501504783-dref7iqm8am321j4pf8baudkhvidvkt5.apps.googleusercontent.com">
     <link rel="icon" href="images/favicon.ico">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <title>Sign Up Page</title>
-
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
-
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
 
     <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -48,11 +46,14 @@
     <input name="username" type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
     <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
-    <p class="text">
-      Sign up with Google:
-      <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    </p>
-    <p class="mt-5 mb-3 text-muted">&copy;2020</p>
+
+    <div class="divider"></div>
+
+    <a class="w-100 btn btn-lg btn-dark" href="/auth/google" role="button" style="text-transform:none">
+      <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+      Sign up with Google
+    </a>
+    <p class="mt-5 mb-3 text-muted">&copy;T_TDO 2020</p>
   </form>
 </main>
 
