@@ -34,6 +34,7 @@ body {
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
     transition: .5s;
+    background: linear-gradient(to right, #f3e5c0, #f3a985);
 }
 
 h1 {
