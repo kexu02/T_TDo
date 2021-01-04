@@ -1,5 +1,4 @@
 require("dotenv").config();
-const dotenv=require("dotenv");
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
@@ -22,7 +21,7 @@ app.use(bodyParser.urlencoded({
 
 //session initial configuration
 app.use(session({
-    secret: process.env.SECRET,
+    secret: "ssss",
     resave: false,
     saveUninitialized: false
 }));
@@ -78,6 +77,17 @@ passport.use(new GoogleStrategy({
   }
 ));
 
+// Google Sign in
+app.get("/auth/google",
+  passport.authenticate('google', { scope: ["profile"] })
+);
+
+app.get("/auth/google/T_TDO",
+    passport.authenticate('google', { failureRedirect: "/signIn" }),
+    function(req, res) {
+      res.redirect("/");
+    });
+
 // homepage
 app.get("/", function(req, res) {
     if (req.isAuthenticated()) {
@@ -125,17 +135,6 @@ app.post("/signUp", function(req, res) {
         }
     });
 });
-
-// Google Sign in
-app.get("/auth/google",
-  passport.authenticate("google", {scope: ["profile"]})
-);
-
-app.get("/auth/google/T_TDO",
-    passport.authenticate("google", {failureRedirect: "/signIn"}),
-    function(req, res) {
-      res.redirect("/");
-    });
 
 // log out
 app.get("/logout", function(req, res) {
