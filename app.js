@@ -6,6 +6,10 @@ const mongoose = require("mongoose");
 const session = require('express-session');
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const findOrCreate = require("mongoose-findorcreate");
+
+require('dotenv').config();
 
 const app = express();
 
@@ -18,7 +22,7 @@ app.use(bodyParser.urlencoded({
 
 //session initial configuration
 app.use(session({
-    secret: "ssss",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false
 }));
@@ -38,16 +42,41 @@ mongoose.set("useCreateIndex", true);
 // creating user schema
 const userSchema = new mongoose.Schema({
     username: String,
-    password: String
+    password: String,
+    googleId: String
 });
 
 userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(findOrCreate);
 
 const User = new mongoose.model("User", userSchema);
 
 passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+// Google OAuth
+passport.use(new GoogleStrategy({
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    callbackURL: "https://fierce-falls-82195.herokuapp.com/auth/google/T_TDO",
+    userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
+    passReqToCallback   : true
+  },
+  function(request, accessToken, refreshToken, profile, done) {
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+  }
+));
 
 // homepage
 app.get("/", function(req, res) {
@@ -96,6 +125,17 @@ app.post("/signUp", function(req, res) {
         }
     });
 });
+
+// Google Sign in
+app.get("/auth/google",
+  passport.authenticate("google", {scope: ["profile"]})
+);
+
+app.get("/auth/google/T_TDO",
+    passport.authenticate("google", {
+        successRedirect: "/",
+        failureRedirect: "/signIn"
+}));
 
 // log out
 app.get("/logout", function(req, res) {
