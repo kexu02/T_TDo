@@ -2,7 +2,6 @@
 
 <head>
     <title>My Evo Calendar</title>
-    <link rel="stylesheet" type="text/css" href="nav.css" />
     <link rel="stylesheet" type="text/css" href="evo-calendar.css" />
     <link rel="stylesheet" type="text/css" href="evo-calendar.orange-coral.css" />
 </head>
@@ -18,8 +17,15 @@
         // initialize your calendar, once the page's DOM is ready
         $(document).ready(function() {
             $('#calendar').evoCalendar({
-                theme: "Orange Coral"
+                theme: "Orange Coral",
             })
+            $('#calendar').evoCalendar('addCalendarEvent', {     
+                id: 'testEvent',
+                name: 'New Year',
+                description: 'First Day of 2021!!!',
+                date: 'January 1, 2021',
+                type: 'holiday'
+            });
         })
     </script>
 
