@@ -68,7 +68,6 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "https://ttdo.herokuapp.com/auth/google/ttdo",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
-    passReqToCallback: true
   },
   function(accessToken, refsreshToken, profile, done) {
     console.log(profile);
@@ -80,7 +79,7 @@ passport.use(new GoogleStrategy({
 
 // Google Sign in
 app.get("/auth/google",
-  passport.authenticate('google', { scope: ["https://www.googleapis.com/auth/userinfo.profile"] })
+  passport.authenticate('google', { scope: ["profile"] })
 );
 
 app.get("/auth/google/ttdo",
