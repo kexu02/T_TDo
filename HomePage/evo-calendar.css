@@ -20,7 +20,7 @@
 
 html,
 body {
-    padding: 0;
+    padding: 5;
     margin: 0;
 }
 
@@ -38,7 +38,7 @@ button:focus {
     position: relative;
     background-color: #fbfbfb;
     color: #5a5a5a;
-    width: 100%;
+    width: 90%;
     -webkit-box-shadow: 0 10px 50px -20px #8773c1;
     box-shadow: 0 10px 50px -20px #8773c1;
     margin: 0 auto;
@@ -76,8 +76,8 @@ button:focus {
 
 .calendar-sidebar>span#sidebarToggler {
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     top: 0;
     right: 0;
     -webkit-transform: translate(100%, 0);
