@@ -31,7 +31,6 @@ body {
     position: relative;
     margin: 0;
     padding: 2rem 0 0 6.75rem;
-    font-family: var(--body-font);
     font-size: var(--normal-font-size);
     transition: .5s;
     background: -webkit-gradient(linear, left top, right top, from(#f3e5c0), to(#f3a985));
