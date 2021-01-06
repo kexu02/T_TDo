@@ -80,8 +80,8 @@ passport.use(new GoogleStrategy({
     callbackURL: "https://ttdo.herokuapp.com/auth/google/ttdo",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
   },
-  function(accessToken, refsreshToken, profile, email, done) {
-    User.findOrCreate({ googleId: profile.id, username: email}, function (err, user) {
+  function(accessToken, refsreshToken, profile, done) {
+    User.findOrCreate({ googleId: profile.id, username: profile.emails[0].value}, function (err, user) {
       return done(err, user);
     });
   }
