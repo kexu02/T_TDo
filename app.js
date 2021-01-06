@@ -124,6 +124,9 @@ app.post("/signIn", function(req, res) {
             passport.authenticate("local")(req, res, function() {
                 res.redirect("/");
             })
+        } else {
+            request.flash('message', 'Incorrect username or password');
+            res.redirect("/signIn");
         }
     });
 });
@@ -143,9 +146,6 @@ app.post("/signUp", function(req, res) {
             passport.authenticate("local")(req, res, function() {
                 res.redirect("/");
             });
-        } else {
-            request.flash('message', 'Incorrect username or password');
-            res.redirect("/signIn");
         }
     });
 });
