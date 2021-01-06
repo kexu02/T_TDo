@@ -21,7 +21,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-<<<<<<< HEAD
 
 //flash message initialization
 app.user(session({
@@ -31,9 +30,6 @@ app.user(session({
     saveUninitialized: false
 }));
 app.user(flash());
-=======
-app.set('view engine', 'ejs');
->>>>>>> 31875b7eee7c20d7cc75f26d57ca82b97bdb31ac
 
 //session initial configuration
 app.use(session({
@@ -158,14 +154,14 @@ app.post("/signUp", function(req, res) {
 var items = [];
 
 app.get("/list", function(req, res) {
-  res.render("list", {newListItems: items});
+    res.render("list", { newListItems: items });
 })
 
 
 app.post("/list", function(req, res) {
-  item = req.body.newItem;
-  items.push(item);
-  res.redirect("/list");
+    item = req.body.newItem;
+    items.push(item);
+    res.redirect("/list");
 })
 
 // log out
