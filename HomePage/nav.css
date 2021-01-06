@@ -12,7 +12,7 @@
     --sub-color: #ffe4be;
     --white-color: #FFF;
     /*fonts*/
-    --body-font: 'Poppins', sans-serif;
+    --body-font:'Ubuntu', sans-serif;
     --normal-font-size: 1.5rem;
     --small-font-size: 1rem;
     /*z-index*/
@@ -31,7 +31,6 @@ body {
     position: relative;
     margin: 0;
     padding: 2rem 0 0 6.75rem;
-    font-family: var(--body-font);
     font-size: var(--normal-font-size);
     transition: .5s;
     background-color: #fff3e2;

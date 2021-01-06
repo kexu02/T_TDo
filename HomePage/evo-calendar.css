@@ -18,14 +18,14 @@
     box-sizing: border-box;
 }
 
+body{
+  font-family: 'Ubuntu', sans-serif;
+}
+
 html,
 body {
     padding: 5;
     margin: 0;
-}
-
-body {
-    font-family: 'Source Sans Pro';
 }
 
 input:focus,
