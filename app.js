@@ -125,9 +125,7 @@ app.post("/signIn", function(req, res) {
                 res.redirect("/");
             })
         } else {
-            app.get("/signIn", function(req, res) {
-                res.sendFile(__dirname + "/signIn.html");
-            });
+            res.redirect("/signIn");
             request.flash('message', 'Incorrect username or password');
         }
     });
