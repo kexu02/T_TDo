@@ -122,12 +122,13 @@ app.post("/signIn", function(req, res) {
     req.login(user, function(err) {
         if (!err) {
             passport.authenticate("local")(req, res, function() {
-                request.flash('message', 'Incorrect username or password');
                 res.redirect("/");
             })
         } else {
+            app.get("/signIn", function(req, res) {
+                res.sendFile(__dirname + "/signIn.html");
+            });
             request.flash('message', 'Incorrect username or password');
-            res.redirect("/signIn");
         }
     });
 });
