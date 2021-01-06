@@ -53,38 +53,38 @@ const User = new mongoose.model("User", userSchema);
 passport.use(User.createStrategy());
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+    done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
 });
 
 // Google OAuth
 passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://ttdo.herokuapp.com/auth/google/ttdo",
-    userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
-  },
-  function(accessToken, refsreshToken, profile, done) {
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
-      return done(err, user);
-    });
-  }
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL: "https://ttdo.herokuapp.com/auth/google/ttdo",
+        userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
+    },
+    function(accessToken, refsreshToken, profile, done) {
+        User.findOrCreate({ googleId: profile.id }, function(err, user) {
+            return done(err, user);
+        });
+    }
 ));
 
 // Google Sign in
 app.get("/auth/google",
-  passport.authenticate('google', { scope: ["profile"] })
+    passport.authenticate('google', { scope: ["profile"] })
 );
 
 app.get("/auth/google/ttdo",
     passport.authenticate('google', { failureRedirect: "/signIn" }),
     function(req, res) {
-      res.redirect("/");
+        res.redirect("/");
     });
 
 // homepage
@@ -137,8 +137,8 @@ app.post("/signUp", function(req, res) {
 
 // log out
 app.get("/logout", function(req, res) {
-  req.logout();
-  res.redirect("/signIn");
+    req.logout();
+    res.redirect("/signIn");
 });
 
 // connects to webpage
