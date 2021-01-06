@@ -6,6 +6,7 @@ html {
 h1 {
   color: #fff;
   padding: 10px;
+  font-size: 40px;
 }
 
 .box {
@@ -49,7 +50,7 @@ p {
   color: #00204a;
 }
 
-form {
+.item {
   text-align: center;
   margin-left: 20px;
 }

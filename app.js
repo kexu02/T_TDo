@@ -40,16 +40,25 @@ mongoose.connect("mongodb+srv://admin-ke:password123!@cluster0.gwmp3.mongodb.net
 mongoose.set('useUnifiedTopology', true);
 mongoose.set("useCreateIndex", true);
 
+//creating task schema
+const taskSchema = new mongoose.Schema({
+  item: String,
+  description: String,
+  date: Date
+});
+
 // creating user schema
 const userSchema = new mongoose.Schema({
     username: String,
     password: String,
-    googleId: String
+    googleId: String,
+    list: [taskSchema]
 });
 
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
 
+const Task = new mongoose.model("Task", taskSchema);
 const User = new mongoose.model("User", userSchema);
 
 passport.use(User.createStrategy());
@@ -72,7 +81,7 @@ passport.use(new GoogleStrategy({
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
   },
   function(accessToken, refsreshToken, profile, done) {
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    User.findOrCreate({ googleId: profile.id, username: profile.emails[0].value}, function (err, user) {
       return done(err, user);
     });
   }
