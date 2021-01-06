@@ -154,7 +154,6 @@ app.get("/list", function(req, res) {
    Task.find({username : req.body.username}, function(err, foundItems) {
       items.push(foundItems);
       User.list = items;
-      await User.save();
       res.render("list", {newListItems: items});
    });
 })
