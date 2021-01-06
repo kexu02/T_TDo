@@ -42,6 +42,7 @@ mongoose.set("useCreateIndex", true);
 
 //creating task schema
 const taskSchema = new mongoose.Schema({
+  username: String,
   item: String,
   description: String,
   date: Date
@@ -150,15 +151,25 @@ app.post("/signUp", function(req, res) {
 var items = [];
 
 app.get("/list", function(req, res) {
-  res.render("list", {newListItems: items});
+   Task.find({username : req.body.username}, function(err, foundItems) {
+      items.push(foundItems);
+      User.overwrite({list : items});
+      res.render("list", {newListItems: items});
+   });
 })
 
 
 app.post("/list", function(req, res) {
-  item = req.body.newItem;
-  items.push(item);
+  const taskItem = req.body.newItem;
+  const task = new Task({
+    username: req.body.username,
+    item: taskItem
+  });
+
+  task.save();
+
   res.redirect("/list");
-})
+});
 
 // log out
 app.get("/logout", function(req, res) {
