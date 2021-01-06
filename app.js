@@ -9,6 +9,8 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
+var session = require('expess-session');
+var flash = require('connect-flash');
 
 const app = express();
 
@@ -18,6 +20,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+
+//flash message initialization
+app.user(session({
+    secret: 'secret',
+    cookie: { maxAge: 600000 },
+    resave: false,
+    saveUninitialized: false
+}));
+app.user(flash());
 
 //session initial configuration
 app.use(session({
@@ -131,6 +143,9 @@ app.post("/signUp", function(req, res) {
             passport.authenticate("local")(req, res, function() {
                 res.redirect("/");
             });
+        } else {
+            request.flash('message', 'Incorrect username or password');
+            res.redirect("/signIn");
         }
     });
 });
