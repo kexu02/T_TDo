@@ -19,6 +19,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.set('view engine', 'ejs');
+
 //session initial configuration
 app.use(session({
     secret: "ssss",
@@ -134,6 +136,20 @@ app.post("/signUp", function(req, res) {
         }
     });
 });
+
+// To do list
+var items = [];
+
+app.get("/list", function(req, res) {
+  res.render("list", {newListItems: items});
+})
+
+
+app.post("/list", function(req, res) {
+  item = req.body.newItem;
+  items.push(item);
+  res.redirect("/list");
+})
 
 // log out
 app.get("/logout", function(req, res) {
