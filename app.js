@@ -50,16 +50,25 @@ mongoose.connect("mongodb+srv://admin-ke:password123!@cluster0.gwmp3.mongodb.net
 mongoose.set('useUnifiedTopology', true);
 mongoose.set("useCreateIndex", true);
 
+//creating task schema
+const taskSchema = new mongoose.Schema({
+  item: String,
+  description: String,
+  date: Date
+});
+
 // creating user schema
 const userSchema = new mongoose.Schema({
     username: String,
     password: String,
-    googleId: String
+    googleId: String,
+    list: [taskSchema]
 });
 
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
 
+const Task = new mongoose.model("Task", taskSchema);
 const User = new mongoose.model("User", userSchema);
 
 passport.use(User.createStrategy());
@@ -76,6 +85,7 @@ passport.deserializeUser(function(id, done) {
 
 // Google OAuth
 passport.use(new GoogleStrategy({
+<<<<<<< HEAD
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: "https://ttdo.herokuapp.com/auth/google/ttdo",
@@ -86,11 +96,27 @@ passport.use(new GoogleStrategy({
             return done(err, user);
         });
     }
+=======
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: "https://ttdo.herokuapp.com/auth/google/ttdo",
+    userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
+  },
+  function(accessToken, refsreshToken, profile, done) {
+    User.findOrCreate({ googleId: profile.id, username: profile.emails[0].value}, function (err, user) {
+      return done(err, user);
+    });
+  }
+>>>>>>> 33e606bfce94a41f55f7bc55f7beafa6e116daa6
 ));
 
 // Google Sign in
 app.get("/auth/google",
+<<<<<<< HEAD
     passport.authenticate('google', { scope: ["profile"] })
+=======
+  passport.authenticate('google', { scope: ["profile", "email"] })
+>>>>>>> 33e606bfce94a41f55f7bc55f7beafa6e116daa6
 );
 
 app.get("/auth/google/ttdo",
