@@ -44,7 +44,7 @@ mongoose.set("useCreateIndex", true);
 
 //creating task schema
 const taskSchema = new mongoose.Schema({
-    username: String,
+    user: String,
     item: String,
     description: String,
     date: String,
