@@ -199,7 +199,7 @@ app.post("/list", function(req, res) {
     console.log(req.User);
     const taskItem = req.body.newItem;
     const task = new Task({
-        // username: req.User.username,
+        user: req.user.id,
         item: taskItem
     });
     task.save();
