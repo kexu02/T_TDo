@@ -29,7 +29,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
-app.user(flash());
+app.use(flash());
 
 //set up session with passport
 app.use(passport.initialize());
