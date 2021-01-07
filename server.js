@@ -14,10 +14,14 @@ const taskSchema = {
     type: String
 }
 
-const Task = mongoose.model('Tasks(test)', taskSchema);
+const Task = mongoose.model('Tasks', taskSchema);
 
 app.get('/', (req, res) => {
-
+    Task.find({}, function(err, Tasks) {
+        res.render('cal', {
+            taskList: Tasks
+        })
+    })
 })
 
 app.listen(4000, function() {
