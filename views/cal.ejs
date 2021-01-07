@@ -50,35 +50,28 @@
         </form>
     </div>
 
-    <% taskList.forEach(Tasks => {%>
-        <p>
-            <%= Task.name %>
-        </p>
-        <%})%>
+    <!--create a calendar-->
+    <div id="calendar"></div>
 
-            <!--create a calendar-->
-            <div id="calendar"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="evo-calendar.js"></script>
+    <script>
+        // initialize your calendar, once the page's DOM is ready
+        $(document).ready(function() {
+            $('#calendar').evoCalendar({
+                theme: "Orange Coral",
+            })
+            $('#calendar').evoCalendar('addCalendarEvent', [
 
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            <script src="evo-calendar.js"></script>
+            ]);
+        })
+    </script>
 
-            <script>
-                // initialize your calendar, once the page's DOM is ready
-                $(document).ready(function() {
-                    $('#calendar').evoCalendar({
-                        theme: "Orange Coral",
-                    })
-                    $('#calendar').evoCalendar('addCalendarEvent', [
+    <!--Ionicons-->
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
-                    ]);
-                })
-            </script>
-
-            <!--Ionicons-->
-            <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
-
-            <!--Main JS-->
-            <script src="nav.js"></script>
+    <!--Main JS-->
+    <script src="nav.js"></script>
 
 </body>
 
