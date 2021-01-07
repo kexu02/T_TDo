@@ -6,6 +6,7 @@
   <link href="css/list.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="nav.css" />
   <link rel="icon" href="images/favicon.ico">
 </head>
@@ -48,6 +49,27 @@
   </div>
 
   <div class="box" id="heading">
+    <h1>Add a new task</h1>
+  </div>
+
+  <div>
+    <form action="/list" method="post">
+      <p class="taskBox"><input type="text" name="newItem" placeholder="New task" autocomplete="off"></p>
+      <p class="dateBox"><input type="date" name="date" autocomplete="off" required="reqiored"></p>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1"></label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="description"></textarea>
+      </div>
+      <select name="type">
+        <option value="event">event</option>
+        <option value="birthday">birthday</option>
+        <option value="holiday">holiday</option>
+      </select>
+      <button type="submit" name="Addbutton">+</button>
+    </form>
+  </div>
+
+  <div class="box" id="heading">
     <h1>My tasks</h1>
   </div>
 
@@ -58,12 +80,8 @@
       <p><%= newListItems[i].item %></p>
     </div>
     <% } %>
-
-    <form class="item" action="/list" method="post">
-      <input type="text" name="newItem" placeholder="Add task here" autocomplete="off">
-      <button type="submit" name="Addbutton">+</button>
-    </form>
   </div>
+
 
   <!--Ionicons-->
   <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>

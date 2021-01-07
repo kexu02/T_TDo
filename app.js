@@ -185,7 +185,7 @@ app.get("/list", function(req, res) {
              if (foundUser) {
                foundUser.list = foundItems;
                foundUser.save();
-               res.render("list", { newListItems: foundItems });
+              res.render("list", { newListItems: foundItems });
              }
            }
          });
@@ -193,14 +193,20 @@ app.get("/list", function(req, res) {
   } else {
     res.redirect("/signIn");
   }
-});
+ });
 
 app.post("/list", function(req, res) {
     console.log(req.User);
     const taskItem = req.body.newItem;
+    const description = req.body.description;
+    const date = req.body.date;
+    const type = req.body.type;
     const task = new Task({
         user: req.user.id,
-        item: taskItem
+        item: taskItem,
+        description : description,
+        date: date,
+        type: type
     });
     task.save();
     res.redirect("/list");

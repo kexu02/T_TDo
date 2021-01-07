@@ -93,3 +93,17 @@ footer {
   color: rgba(0, 0, 0, 0.5);
   text-align: center;
 }
+
+.taskBox {
+  max-width: 400px;
+  margin: 50px auto;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.dateBox {
+  max-width: 100px;
+  text-align: center;
+}
