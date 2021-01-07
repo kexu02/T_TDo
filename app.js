@@ -124,21 +124,21 @@ app.get("/signIn", function(req, res) {
 });
 
 app.post("/signIn", function(req, res) {
-  const user = new User({
-    username: req.body.username,
-    password: req.body.password
-  });
+    const user = new User({
+        username: req.body.username,
+        password: req.body.password
+    });
 
-  req.login(user, function(err) {
-    if (!err) {
-      passport.authenticate("local")(req, res, function() {
-        res.redirect("/");
-      })
-    } else {
-      res.redirect("/signIn");
-      failureFlash: 'Invalid username or password.';
-    }
-  });
+    req.login(user, function(err) {
+        if (!err) {
+            passport.authenticate("local")(req, res, function() {
+                res.redirect("/");
+            })
+        } else {
+            res.redirect("/signIn");
+            failureFlash: 'Invalid username or password.';
+        }
+    });
 });
 
 // sign up page
@@ -164,13 +164,16 @@ app.post("/signUp", function(req, res) {
 
 // calender
 app.get("/cal", function(req, res) {
-  if (req.isAuthenticated()) {
-     Task.find({}, function(err, foundItems) {
-     res.render("cal", { taskList: foundItems });
-  });
-  } else {
-    res.redirect("/signIn");
-  }
+    if (req.isAuthenticated()) {
+        Task.find({}, function(err, foundItems) {
+            res.render("cal", { taskList: foundItems });
+        });
+        users.find({}, function(err, usernames) {
+            res.render("cal", { nameList: usernames });
+        });
+    } else {
+        res.redirect("/signIn");
+    }
 });
 
 // to do list
@@ -193,14 +196,14 @@ app.get("/list", function(req, res) {
 });
 
 app.post("/list", function(req, res) {
-  const taskItem = req.body.newItem;
-  const task = new Task({
-    user: req.user.id,
-    item: taskItem
-  });
-  task.save();
-
-  res.redirect("/list");
+    console.log(req.User);
+    const taskItem = req.body.newItem;
+    const task = new Task({
+        // username: req.User.username,
+        item: taskItem
+    });
+    task.save();
+    res.redirect("/list");
 });
 
 // log out

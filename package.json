@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/kexu02/T_TDo#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
     "dotenv": "^8.2.0",
