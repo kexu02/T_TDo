@@ -33,12 +33,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//getting username
-app.use(function(req,res,next){
-  res.locals.currentUser=req.user;
-  next();
-})
-
 mongoose.connect("mongodb+srv://admin-ke:password123!@cluster0.gwmp3.mongodb.net/T_TDO", {
   useNewUrlParser: true
 }, {
@@ -116,6 +110,7 @@ app.get("/auth/google/ttdo",
 // homepage
 app.get("/", function(req, res) {
   if (req.isAuthenticated()) {
+    console.log(currentUser.username);
     res.sendFile(__dirname + "/HomePage/homepage.html");
   } else {
     res.redirect("/signIn");
@@ -168,7 +163,7 @@ var items = [];
 
 app.get("/list", function(req, res) {
   Task.find({
-    username: req.currentUser.username
+
   }, function(err, foundItems) {
     items.push(foundItems);
     User.list = items;
@@ -182,7 +177,6 @@ app.get("/list", function(req, res) {
 app.post("/list", function(req, res) {
   const taskItem = req.body.newItem;
   const task = new Task({
-    username: req.currentUser.username,
     item: taskItem
   });
 
