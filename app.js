@@ -124,7 +124,6 @@ app.get("/signIn", function(req, res) {
 });
 
 app.post("/signIn", function(req, res) {
-<<<<<<< HEAD
   const user = new User({
     username: req.body.username,
     password: req.body.password
@@ -140,23 +139,6 @@ app.post("/signIn", function(req, res) {
       failureFlash: 'Invalid username or password.';
     }
   });
-=======
-    const user = new User({
-        username: req.body.username,
-        password: req.body.password
-    });
-
-    req.login(user, function(err) {
-        if (!err) {
-            passport.authenticate("local")(req, res, function() {
-                res.redirect("/");
-            })
-        } else {
-            res.redirect("/signIn");
-            request.flash('message', 'Incorrect username or password');
-        }
-    });
->>>>>>> d22636e325e7734887585bc59b75f0e9b05e6dfd
 });
 
 // sign up page
@@ -184,7 +166,7 @@ app.post("/signUp", function(req, res) {
 
 app.get("/cal", function(req, res) {
   if (req.isAuthenticated()) {
-    Task.find({}, function(err, foundItems) {
+     Task.find({}, function(err, foundItems) {
      res.render("cal", {
          taskList: foundItems
      });
