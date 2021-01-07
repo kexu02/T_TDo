@@ -175,20 +175,28 @@ app.get("/cal", function(req, res) {
 
 // to do list
 app.get("/list", function(req, res) {
-    if (req.isAuthenticated()) {
-        Task.find({}, function(err, foundItems) {
-            res.render("list", { newListItems: foundItems });
-        });
-    } else {
-        res.redirect("/signIn");
-    }
+  if (req.isAuthenticated()) {
+       Task.find({user: req.user.id}, function(err, foundItems) {
+         User.findById(req.user.id, function(err, foundUser) {
+           if (!err) {
+             if (foundUser) {
+               foundUser.list = foundItems;
+               foundUser.save();
+               res.render("list", { newListItems: foundItems });
+             }
+           }
+         });
+    });
+  } else {
+    res.redirect("/signIn");
+  }
 });
 
 app.post("/list", function(req, res) {
     console.log(req.User);
     const taskItem = req.body.newItem;
     const task = new Task({
-        // username: req.User.username,
+        user: req.user.id,
         item: taskItem
     });
     task.save();
