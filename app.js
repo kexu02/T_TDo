@@ -23,14 +23,6 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-//flash message initialization
-app.user(session({
-    secret: 'secret',
-    cookie: { maxAge: 600000 },
-    resave: false,
-    saveUninitialized: false
-}));
-app.user(flash());
 
 //session initial configuration
 app.use(session({
@@ -38,6 +30,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+app.user(flash());
 
 //set up session with passport
 app.use(passport.initialize());
