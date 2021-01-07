@@ -166,7 +166,12 @@ app.post("/signUp", function(req, res) {
 
 app.get("/cal", function(req, res) {
     res.render("cal");
-})
+    Task.find({}, function(err, foundItems) {
+        res.render("cal", {
+            taskList: foundItems
+        });
+    });
+});
 
 // to do list
 app.get("/list", function(req, res) {
@@ -185,14 +190,6 @@ app.post("/list", function(req, res) {
     res.redirect("/list");
 });
 
-//to-do list to calendar
-app.get('/list', function(req, res) {
-    Task.find({}, function(err, foundItems) {
-        res.render("cal", {
-            taskList: foundItems
-        });
-    });
-});
 
 // log out
 app.get("/logout", function(req, res) {
