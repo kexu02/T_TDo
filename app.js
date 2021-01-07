@@ -6,6 +6,7 @@ const ejs = require("ejs");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
@@ -41,6 +42,12 @@ app.use(session({
 //set up session with passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+//getting username
+app.use(function(req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
+})
 
 mongoose.connect("mongodb+srv://admin-ke:password123!@cluster0.gwmp3.mongodb.net/T_TDO", {
     useNewUrlParser: true
@@ -150,7 +157,9 @@ app.get("/signUp", function(req, res) {
 });
 
 app.post("/signUp", function(req, res) {
-    User.register({ username: req.body.username }, req.body.password, function(err, user) {
+    User.register({
+        username: req.body.username
+    }, req.body.password, function(err, user) {
         if (!err) {
             passport.authenticate("local")(req, res, function() {
                 res.redirect("/");

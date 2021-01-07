@@ -50,12 +50,13 @@
   </div>
 
   <div class="box">
-    <% for (var i = 0; i < newListItems.length; i ++) { %>
-    <div class="item">
-      <input type="checkbox">
-      <p><%= newListItems[i] %></p>
-    </div>
-    <% } %>
+
+    <% newListItems.forEach(function(task) { %>
+       <div class="item">
+         <input type="checkbox">
+         <p><%= task.item %></p>
+       </div>
+    <% }) %>
 
     <form class="item" action="/list" method="post">
       <input type="text" name="newItem" placeholder="Add task here" autocomplete="off">
