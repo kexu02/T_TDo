@@ -167,15 +167,9 @@ app.get("/cal", function(req, res) {
 })
 
 // to do list
-var items = [];
-
 app.get("/list", function(req, res) {
   Task.find({}, function(err, foundItems) {
-    items.push(foundItems);
-    // User.list = items;
-    res.render("list", {
-      newListItems: items
-    });
+    res.render("list", { newListItems: foundItems});
   });
 });
 
@@ -185,6 +179,7 @@ app.post("/list", function(req, res) {
     item: taskItem
   });
   task.save();
+  res.redirect("/list");
 });
 
 // log out

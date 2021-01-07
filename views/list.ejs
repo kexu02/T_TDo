@@ -48,17 +48,16 @@
   </div>
 
   <div class="box" id="heading">
-    <h1>Add a new task</h1>
+    <h1>My tasks</h1>
   </div>
 
   <div class="box">
-
-    <% newListItems.forEach(function(task) { %>
+    <% for(let i = 0; i < newListItems.length; i ++) { %>
     <div class="item">
       <input type="checkbox">
-      <p><%= task.item %></p>
+      <p><%= newListItems[i].item %></p>
     </div>
-    <% }) %>
+    <% } %>
 
     <form class="item" action="/list" method="post">
       <input type="text" name="newItem" placeholder="Add task here" autocomplete="off">
