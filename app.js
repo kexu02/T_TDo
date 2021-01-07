@@ -10,7 +10,6 @@ const LocalStrategy = require("passport-local").Strategy;
 const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
-var session = require('expess-session');
 var flash = require('connect-flash');
 
 const app = express();
