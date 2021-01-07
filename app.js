@@ -125,8 +125,8 @@ app.post("/signIn", function(req, res) {
                 res.redirect("/");
             })
         } else {
-            res.redirect("/signIn");
             request.flash('message', 'Incorrect username or password');
+            res.redirect("/signIn");
         }
     });
 });
@@ -156,25 +156,25 @@ app.post("/signUp", function(req, res) {
 var items = [];
 
 app.get("/list", function(req, res) {
-  Task.find({
+    Task.find({
 
-  }, function(err, foundItems) {
-    items.push(foundItems);
-    User.list = items;
-    res.render("list", {
-      newListItems: items
+    }, function(err, foundItems) {
+        items.push(foundItems);
+        User.list = items;
+        res.render("list", {
+            newListItems: items
+        });
     });
-  });
 });
 
 
 app.post("/list", function(req, res) {
-  const taskItem = req.body.newItem;
-  const task = new Task({
-    item: taskItem
-  });
+    const taskItem = req.body.newItem;
+    const task = new Task({
+        item: taskItem
+    });
 
-  task.save();
+    task.save();
 });
 
 //go to cal.ejs
