@@ -11,9 +11,9 @@ body {
     background-color: #fff3e2;
 }
 
-.divider{
-    width:auto;
-    height:5px;
+.divider {
+    width: auto;
+    height: 5px;
 }
 
 .form-signin {
@@ -52,7 +52,7 @@ body {
 }
 
 .googleSignIn {
-  background-color: #ebcfc4;
+    background-color: #ebcfc4;
 }
 
 .logo {
@@ -61,16 +61,16 @@ body {
 }
 
 .signUpButton {
-  background:none !important;
-  border:none;
-  padding:0 !important;
-  font-family:arial, sans-serif;
-  color:#069;
-  cursor:pointer;
-  }
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    font-family: arial, sans-serif;
+    color: #069;
+    cursor: pointer;
+}
 
 .signUpButton:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .text {

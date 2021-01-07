@@ -2,67 +2,66 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Hugo 0.79.0">
-  <title>Sign In Page</title>
-  <link rel="icon" href="images/favicon.ico">
-  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-  </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.79.0">
+    <title>Sign In Page</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
 
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-    }
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
-
-  <!-- Custom styles for this template -->
-  <link href="css/styles.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
 
-  <main class="form-signin">
-    <form action="/signIn" method="post">
-      <img class="logo" src="images/T_TDO.jpg" alt="" width="350" height="200">
-      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-      <input type="email" name="username" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-      <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    </form>
+    <main class="form-signin">
+        <form action="/signIn" method="post">
+            <img class="logo" src="images/T_TDO.jpg" alt="" width="350" height="200">
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <input type="email" name="username" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        </form>
 
-    <div class="divider"></div>
+        <div class="divider"></div>
 
-    <a class="w-100 btn btn-lg btn-dark" href="/auth/google" role="button" style="text-transform:none">
-      <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-      Login with Google
-    </a>
+        <a class="w-100 btn btn-lg btn-dark" href="/auth/google" role="button" style="text-transform:none">
+            <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" /> Login with Google
+        </a>
 
-    <form action="/toSignUp" method="post">
-      <p class="text">
-        Don't have an account?
-        <button class="signUpButton" type="submit">Sign up here</button>
-      </p>
-    </form>
-    <p class="mt-5 mb-3 text-muted">T_TDO &copy;2020</p>
-  </main>
+        <form action="/toSignUp" method="post">
+            <p class="text">
+                Don't have an account?
+                <button class="signUpButton" type="submit">Sign up here</button>
+            </p>
+        </form>
+        <p class="mt-5 mb-3 text-muted">T_TDO &copy;2020</p>
+    </main>
 
 
 
