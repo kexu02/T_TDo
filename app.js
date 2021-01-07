@@ -196,7 +196,38 @@ app.post("/list", function(req, res) {
     console.log(req.User);
     const taskItem = req.body.newItem;
     const description = req.body.description;
-    const date = req.body.date.toString();
+
+    var date = req.body.date.toString();
+    const day = date.slice(8,10);
+    var month = date.slice(5,7);
+    if (month === "01") {
+      month = "January";
+    } else if (month === "02") {
+      month = "February";
+    } else if (month === "03") {
+      month = "March";
+    } else if (month === "04") {
+      month = "April";
+    } else if (month === "05") {
+      month = "May";
+    } else if (month === "06") {
+      month = "June";
+    } else if (month === "07") {
+      month = "July";
+    } else if (month === "08") {
+      month = "August";
+    } else if (month === "09") {
+      month = "September";
+    } else if (month === "10") {
+      month = "October";
+    } else if (month === "11") {
+      month = "November";
+    } else {
+      month = "December";
+    }
+    const year = date.slice(0,4);
+    date = month + day + ", " + year;
+
     const type = req.body.type;
     const task = new Task({
         user: req.user.id,
