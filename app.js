@@ -176,7 +176,7 @@ app.post("/list", function(req, res) {
 
 //go to cal.ejs
 app.get("/cal", function(req, res) {
-    res.render("/cal");
+    res.render("cal");
 })
 
 // log out
