@@ -181,6 +181,7 @@ app.get("/list", function(req, res) {
            if (!err) {
              if (foundUser) {
                foundUser.list = foundItems;
+               foundUser.save();
                res.render("list", { newListItems: foundItems });
              }
            }
