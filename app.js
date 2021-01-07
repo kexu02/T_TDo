@@ -169,16 +169,17 @@ app.get("/list", function(req, res) {
     res.render("list", {
       newListItems: items
     });
+  });
 });
 
 
 app.post("/list", function(req, res) {
-    const taskItem = req.body.newItem;
-    const task = new Task({
-        item: taskItem
-    });
+  const taskItem = req.body.newItem;
+  const task = new Task({
+    item: taskItem
+  });
 
-    task.save();
+  task.save();
 });
 
 // log out
