@@ -168,9 +168,6 @@ app.get("/cal", function(req, res) {
         Task.find({}, function(err, foundItems) {
             res.render("cal", { taskList: foundItems });
         });
-        users.find({}, function(err, usernames) {
-            res.render("cal", { nameList: usernames });
-        });
     } else {
         res.redirect("/signIn");
     }
