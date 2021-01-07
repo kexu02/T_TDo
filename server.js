@@ -18,9 +18,7 @@ const Task = mongoose.model('Tasks', taskSchema);
 
 app.get('/', (req, res) => {
     Task.find({}, function(err, Tasks) {
-        res.render('cal', {
-            taskList: Tasks
-        })
+
     })
 })
 
