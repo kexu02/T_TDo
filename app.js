@@ -240,6 +240,16 @@ app.post("/list", function(req, res) {
     res.redirect("/list");
 });
 
+//deleting tasks
+app.post("/delete", function(req, res) {
+  const checkedTask = req.body.checkbox;
+  Task.findByIdAndRemove(checkedTask, function(err) {
+    if (!err) {
+      res.redirect("/list");
+    }
+  })
+})
+
 // log out
 app.get("/logout", function(req, res) {
     req.logout();
