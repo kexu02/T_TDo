@@ -168,7 +168,8 @@ app.get("/cal", function(req, res) {
 })
 
 // to do list
-var tasks = [];
+var items = [];
+
 app.get("/list", function(req, res) {
     Task.find({}, function(err, foundItems) {
         items.push(foundItems);
@@ -176,34 +177,8 @@ app.get("/list", function(req, res) {
         res.render("list", {
             newListItems: items
         });
+        res.render("list", { newListItems: foundItems });
     });
-});
-
-app.post("/list", function(req, res) {
-    const taskItem = req.body.newItem;
-    const task = new Task({
-        item: taskItem
-    });
-    task.save();
-});
-
-// to do list to calendar
-
-app.get("/cal", function(req, res) {
-    Task.find({}, function(err, foundItems) {
-        items.push(foundItems);
-        res.render("cal", {
-            newListItems: items
-        });
-    });
-});
-
-app.post("/cal", function(req, res) {
-    const taskItem = req.body.newItem;
-    const task = new Task({
-        item: taskItem
-    });
-    task.save();
 });
 
 // log out
