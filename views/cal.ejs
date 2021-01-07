@@ -64,18 +64,15 @@
           theme: "Orange Coral"
         })
 
-        /*$('#calendar').evoCalendar('addCalendarEvent', {     
+        $('#calendar').evoCalendar('addCalendarEvent', {     
             id: '<%-taskList[0]._id %>',
             name: '<%-taskList[0].item',
             description: '<%-taskList[0].description',
             date: '<%-taskList[0].date',
             type: '<%-taskList[0].type'
-        });*/
+        });
       })
     </script>
-
-    for (let i = 0; i < taskList.length; i++) { $('#calendar').evoCalendar('addCalendarEvent', [ id: <%= taskList[i]._id %>, name: <%= taskList[i].item %>, date: <%= taskList[i].date %>, type: <%= taskList[i].type %>, description:
-      <%= taskList[i].description %> ]); } }) </script>
 
       <!--Main JS-->
       <script src="nav.js"></script>

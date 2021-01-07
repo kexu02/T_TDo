@@ -196,7 +196,7 @@ app.post("/list", function(req, res) {
     console.log(req.User);
     const taskItem = req.body.newItem;
     const description = req.body.description;
-    const date = req.body.date;
+    const date = req.body.date.toString();
     const type = req.body.type;
     const task = new Task({
         user: req.user.id,
