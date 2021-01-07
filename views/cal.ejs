@@ -53,14 +53,13 @@
     <!--create a calendar-->
     <div id="calendar"></div>
 
-    <div class="box">
-        <% for(let i = 0; i < newListItems.length; i ++) { %>
-            <div class="item">
-                <p>
-                    <%= newListItems[i].item %>
-                </p>
-            </div>
-            <% } %>
+    <%taskList.forEach(task => {%>
+        <p>
+            <%= task.item %>
+        </p>
+        <%})%>
+
+            <div class="box">
 
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
                 <script src="evo-calendar.js"></script>
@@ -68,7 +67,7 @@
                     // initialize your calendar, once the page's DOM is ready
                     $(document).ready(function() {
                         $('#calendar').evoCalendar({
-                            theme: "Orange Coral",
+                            theme: "Orange Coral"
                         })
                         $('#calendar').evoCalendar('addCalendarEvent', [
 

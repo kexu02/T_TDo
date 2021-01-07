@@ -47,7 +47,8 @@ const taskSchema = new mongoose.Schema({
     username: String,
     item: String,
     description: String,
-    date: Date
+    date: String,
+    type: String
 });
 
 // creating user schema
@@ -182,6 +183,15 @@ app.post("/list", function(req, res) {
     });
     task.save();
     res.redirect("/list");
+});
+
+//to-do list to calendar
+app.get('/', function(req, res) {
+    Task.find({}, function(err, tasks) {
+        res.render("cal", {
+            taskList: tasks
+        });
+    });
 });
 
 // log out
