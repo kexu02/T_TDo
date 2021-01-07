@@ -162,11 +162,13 @@ app.post("/signUp", function(req, res) {
 });
 
 // calender
+
 app.get("/cal", function(req, res) {
     res.render("cal");
 })
 
 // to do list
+var tasks = [];
 app.get("/list", function(req, res) {
     Task.find({}, function(err, foundItems) {
         items.push(foundItems);
@@ -186,12 +188,10 @@ app.post("/list", function(req, res) {
 });
 
 // to do list to calendar
-var tasks = [];
 
 app.get("/cal", function(req, res) {
     Task.find({}, function(err, foundItems) {
         items.push(foundItems);
-        // User.list = items;
         res.render("cal", {
             newListItems: items
         });
