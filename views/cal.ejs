@@ -53,11 +53,14 @@
     <!--create a calendar-->
     <div id="calendar"></div>
 
-    <%taskList.forEach(task => {%>
-        <p>
-            <%= task.item %>
-        </p>
-        <%})%>
+    <% for(let i = 0; i < taskList.length; i ++) { %>
+        <div class="item">
+            <input type="checkbox">
+            <p>
+                <%= taskList[i].item %>
+            </p>
+        </div>
+        <% } %>
 
             <div class="box">
 
