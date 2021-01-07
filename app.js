@@ -187,9 +187,9 @@ app.post("/list", function(req, res) {
 
 //to-do list to calendar
 app.get('/', function(req, res) {
-    Task.find({}, function(err, tasks) {
+    Task.find({}, function(err, foundItems) {
         res.render("cal", {
-            taskList: tasks
+            taskList: foundItems
         });
     });
 });
