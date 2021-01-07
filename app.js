@@ -167,8 +167,6 @@ app.get("/cal", function(req, res) {
 })
 
 // to do list
-var items = [];
-
 app.get("/list", function(req, res) {
     Task.find({}, function(err, foundItems) {
         items.push(foundItems);
