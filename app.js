@@ -173,10 +173,9 @@ app.post("/list", function(req, res) {
     res.redirect("/list");
 })
 
-app.post("/cal", function(req, res) {
-    item = req.body.newItem;
-    items.push(item);
-    res.redirect("/cal");
+//go to cal.ejs
+app.get("/cal", function(req, res) {
+    res.render("/cal");
 })
 
 // log out
