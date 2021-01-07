@@ -169,22 +169,16 @@ app.get("/list", function(req, res) {
     res.render("list", {
       newListItems: items
     });
-  });
 });
 
 
 app.post("/list", function(req, res) {
-  const taskItem = req.body.newItem;
-  const task = new Task({
-    item: taskItem
-  });
+    const taskItem = req.body.newItem;
+    const task = new Task({
+        item: taskItem
+    });
 
-  task.save();
-});
-
-//go to cal.ejs
-app.get("/cal", function(req, res) {
-  res.render("cal");
+    task.save();
 });
 
 // log out
