@@ -22,10 +22,12 @@
               <a href="homepage.html" class="nav__logo">T_TDo</a>
             </div>
             <div>
-              <a href="cal.html" class="nav__link">
-                <ion-icon name="calendar-outline" class="nav__icon"></ion-icon>
-                <span class="nav__name">My Calendar</span>
-              </a>
+              <form action="/cal" method="post">
+                <a href="/cal" class="nav__link" type="submit">
+                  <ion-icon name="calendar-outline" class="nav__icon"></ion-icon>
+                  <span class="nav__name">My Calendar</span>
+                </a>
+              </form>
               <form action="/list" method="post">
                 <a href="/list" class="nav__link" type="submit">
                   <ion-icon name="checkbox-outline" class="nav__icon"></ion-icon>
@@ -52,10 +54,10 @@
   <div class="box">
 
     <% newListItems.forEach(function(task) { %>
-       <div class="item">
-         <input type="checkbox">
-         <p><%= task.item %></p>
-       </div>
+    <div class="item">
+      <input type="checkbox">
+      <p><%= task.item %></p>
+    </div>
     <% }) %>
 
     <form class="item" action="/list" method="post">

@@ -138,7 +138,7 @@ app.post("/signIn", function(req, res) {
   });
 });
 
-//sign up page
+// sign up page
 app.post("/toSignUp", function(req, res) {
   res.redirect("/signUp");
 });
@@ -159,26 +159,29 @@ app.post("/signUp", function(req, res) {
   });
 });
 
-// To do list
+// calender
+app.get("/cal", function(req, res) {
+  res.render("cal");
+})
+
+// to do list
 var items = [];
 
 app.get("/list", function(req, res) {
   Task.find({}, function(err, foundItems) {
     items.push(foundItems);
-    User.list = items;
+    // User.list = items;
     res.render("list", {
       newListItems: items
     });
   });
 });
 
-
 app.post("/list", function(req, res) {
   const taskItem = req.body.newItem;
   const task = new Task({
     item: taskItem
   });
-
   task.save();
 });
 
