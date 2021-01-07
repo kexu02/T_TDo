@@ -52,9 +52,9 @@ mongoose.set("useCreateIndex", true);
 
 //creating task schema
 const taskSchema = new mongoose.Schema({
-  item: String,
-  description: String,
-  date: Date
+    item: String,
+    description: String,
+    date: Date
 });
 
 // creating user schema
@@ -85,7 +85,6 @@ passport.deserializeUser(function(id, done) {
 
 // Google OAuth
 passport.use(new GoogleStrategy({
-<<<<<<< HEAD
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: "https://ttdo.herokuapp.com/auth/google/ttdo",
@@ -96,27 +95,11 @@ passport.use(new GoogleStrategy({
             return done(err, user);
         });
     }
-=======
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://ttdo.herokuapp.com/auth/google/ttdo",
-    userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
-  },
-  function(accessToken, refsreshToken, profile, done) {
-    User.findOrCreate({ googleId: profile.id, username: profile.emails[0].value}, function (err, user) {
-      return done(err, user);
-    });
-  }
->>>>>>> 33e606bfce94a41f55f7bc55f7beafa6e116daa6
 ));
 
 // Google Sign in
 app.get("/auth/google",
-<<<<<<< HEAD
     passport.authenticate('google', { scope: ["profile"] })
-=======
-  passport.authenticate('google', { scope: ["profile", "email"] })
->>>>>>> 33e606bfce94a41f55f7bc55f7beafa6e116daa6
 );
 
 app.get("/auth/google/ttdo",
@@ -188,6 +171,12 @@ app.post("/list", function(req, res) {
     item = req.body.newItem;
     items.push(item);
     res.redirect("/list");
+})
+
+app.post("/cal", function(req, res) {
+    item = req.body.newItem;
+    items.push(item);
+    res.redirect("/cal");
 })
 
 // log out
