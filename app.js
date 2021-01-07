@@ -165,7 +165,7 @@ app.get("/list", function(req, res) {
       newListItems: items
     });
   });
-})
+});
 
 
 app.post("/list", function(req, res) {
@@ -175,6 +175,7 @@ app.post("/list", function(req, res) {
   });
 
   task.save();
+});
 
 //go to cal.ejs
 app.get("/cal", function(req, res) {
