@@ -135,7 +135,7 @@ app.post("/signIn", function(req, res) {
       })
     } else {
       res.redirect("/signIn");
-      request.flash('message', 'Incorrect username or password');
+      failureFlash: 'Invalid username or password.';
     }
   });
 });
@@ -163,19 +163,29 @@ app.post("/signUp", function(req, res) {
 
 // calender
 app.get("/cal", function(req, res) {
-  res.render("cal");
+  if (req.isAuthenticated()) {
+    res.render("cal");
+  } else {
+    res.redirect("/signIn");
+  }
 })
 
 // to do list
 app.get("/list", function(req, res) {
-  Task.find({}, function(err, foundItems) {
-    res.render("list", { newListItems: foundItems});
-  });
+  if (req.isAuthenticated()) {
+      Task.find({}, function(err, foundItems) {
+      res.render("list", { newListItems: foundItems });
+    });
+  } else {
+    res.redirect("/signIn");
+  }
 });
 
 app.post("/list", function(req, res) {
+  console.log(req.User);
   const taskItem = req.body.newItem;
   const task = new Task({
+    username: req.User.username,
     item: taskItem
   });
   task.save();
