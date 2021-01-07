@@ -176,7 +176,7 @@ app.get("/cal", function(req, res) {
 // to do list
 app.get("/list", function(req, res) {
   if (req.isAuthenticated()) {
-      Task.find({}, function(err, foundItems) {
+       Task.find({}, function(err, foundItems) {
       res.render("list", { newListItems: foundItems });
     });
   } else {
@@ -185,7 +185,7 @@ app.get("/list", function(req, res) {
 });
 
 app.post("/list", function(req, res) {
-  console.log(req.User);
+  console.log(req.user);
   const taskItem = req.body.newItem;
   const task = new Task({
     // username: req.User.username,
