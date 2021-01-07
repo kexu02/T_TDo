@@ -181,6 +181,14 @@ app.get("/list", function(req, res) {
     });
 });
 
+app.post("/list", function(req, res) {
+    item: taskItem
+});
+task.save();
+res.redirect("/list");
+});
+
+
 // log out
 app.get("/logout", function(req, res) {
     req.logout();
