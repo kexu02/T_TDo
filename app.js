@@ -44,7 +44,7 @@ mongoose.set("useCreateIndex", true);
 
 //creating task schema
 const taskSchema = new mongoose.Schema({
-    username: String,
+    user: String,
     item: String,
     description: String,
     date: String,
@@ -176,8 +176,15 @@ app.get("/cal", function(req, res) {
 // to do list
 app.get("/list", function(req, res) {
   if (req.isAuthenticated()) {
-       Task.find({}, function(err, foundItems) {
-      res.render("list", { newListItems: foundItems });
+       Task.find({user: req.user.id}, function(err, foundItems) {
+         User.findById(req.user.id, function(err, foundUser) {
+           if (!err) {
+             if (foundUser) {
+               foundUser.list = foundItems;
+               res.render("list", { newListItems: foundItems });
+             }
+           }
+         });
     });
   } else {
     res.redirect("/signIn");
@@ -185,13 +192,13 @@ app.get("/list", function(req, res) {
 });
 
 app.post("/list", function(req, res) {
-  console.log(req.user);
   const taskItem = req.body.newItem;
   const task = new Task({
-    // username: req.User.username,
+    user: req.user.id,
     item: taskItem
   });
   task.save();
+
   res.redirect("/list");
 });
 
