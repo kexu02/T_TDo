@@ -21,8 +21,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-
-
 //session initial configuration
 app.use(session({
     secret: "ssss",
@@ -34,12 +32,6 @@ app.use(flash());
 //set up session with passport
 app.use(passport.initialize());
 app.use(passport.session());
-
-//getting username
-app.use(function(req, res, next) {
-    res.locals.currentUser = req.user;
-    next();
-})
 
 mongoose.connect("mongodb+srv://admin-ke:password123!@cluster0.gwmp3.mongodb.net/T_TDO", {
     useNewUrlParser: true
@@ -164,15 +156,25 @@ app.post("/signUp", function(req, res) {
 var items = [];
 
 app.get("/list", function(req, res) {
-    res.render("list", { newListItems: items });
+  Task.find({
+
+  }, function(err, foundItems) {
+    items.push(foundItems);
+    User.list = items;
+    res.render("list", {
+      newListItems: items
+    });
+  });
 })
 
 
 app.post("/list", function(req, res) {
-    item = req.body.newItem;
-    items.push(item);
-    res.redirect("/list");
-})
+  const taskItem = req.body.newItem;
+  const task = new Task({
+    item: taskItem
+  });
+
+  task.save();
 
 //go to cal.ejs
 app.get("/cal", function(req, res) {
