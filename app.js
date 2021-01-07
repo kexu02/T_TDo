@@ -13,6 +13,8 @@ var flash = require('connect-flash');
 
 const app = express();
 
+app.set('view engine', 'ejs');
+
 app.use(express.static("Public"));
 app.use(express.static("HomePage"));
 app.use(bodyParser.json());
@@ -31,8 +33,6 @@ app.use(flash());
 //set up session with passport
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.set('view engine', 'ejs');
 
 mongoose.connect("mongodb+srv://admin-ke:password123!@cluster0.gwmp3.mongodb.net/T_TDO", {
   useNewUrlParser: true
