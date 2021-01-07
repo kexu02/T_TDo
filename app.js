@@ -226,7 +226,7 @@ app.post("/list", function(req, res) {
       month = "December";
     }
     const year = date.slice(0,4);
-    date = month + day + ", " + year;
+    date = month + " " + day + ", " + year;
 
     const type = req.body.type;
     const task = new Task({
