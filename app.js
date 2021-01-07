@@ -163,17 +163,15 @@ app.post("/signUp", function(req, res) {
 });
 
 // calender
-
 app.get("/cal", function(req, res) {
   if (req.isAuthenticated()) {
      Task.find({}, function(err, foundItems) {
-     res.render("cal", {
-         taskList: foundItems
-     });
+     res.render("cal", { taskList: foundItems });
+  });
   } else {
     res.redirect("/signIn");
   }
-})
+});
 
 // to do list
 app.get("/list", function(req, res) {
