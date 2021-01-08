@@ -199,12 +199,6 @@ app.get("/list", function(req, res) {
         res.redirect("/signIn");
     }
 });
-/*app.get("/list", function(req, res) {
-    Task.find({}, function(err, foundItems) {
-        res.render("list", { taskList: foundItems });
-    });
-
-});*/
 
 app.post("/list", function(req, res) {
     console.log(req.User);
