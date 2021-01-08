@@ -2,131 +2,133 @@
 <html lang="en" dir="ltr">
 
 <head>
-  <meta charset="utf-8">
-  <link href="css/list.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="nav.css" />
-  <link rel="icon" href="images/favicon.ico">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <link href="css/list.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="nav.css" />
+    <link rel="icon" href="images/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
 
-  <div data-role="header">
-    <form action="/" method="post">
-      <div class="l-navbar" id="navbar">
-        <nav class="nav">
-          <div>
-            <div class="nav__brand">
-              <ion-icon name="menu-outline" class="nav__icon nav__toggle" id="nav-toggle"></ion-icon>
-              <a href="homepage.html" class="nav__logo">T_TDo</a>
+    <div data-role="header">
+        <form action="/" method="post">
+            <div class="l-navbar" id="navbar">
+                <nav class="nav">
+                    <div>
+                        <div class="nav__brand">
+                            <ion-icon name="menu-outline" class="nav__icon nav__toggle" id="nav-toggle"></ion-icon>
+                            <a href="homepage.html" class="nav__logo">T_TDo</a>
+                        </div>
+                        <div>
+                            <form action="/cal" method="post">
+                                <a href="/cal" class="nav__link" type="submit">
+                                    <ion-icon name="calendar-outline" class="nav__icon"></ion-icon>
+                                    <span class="nav__name">My Calendar</span>
+                                </a>
+                            </form>
+                            <form action="/list" method="post">
+                                <a href="/list" class="nav__link" type="submit">
+                                    <ion-icon name="checkbox-outline" class="nav__icon"></ion-icon>
+                                    <span class="nav__name">To-do List</span>
+                                </a>
+                            </form>
+                            <form action="/logout" method="post">
+                                <a class="nav__link" href="/logout" role="button" type="submit">
+                                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                                    <span class="nav__name">Log Out</span>
+                                </a>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
             </div>
-            <div>
-              <form action="/cal" method="post">
-                <a href="/cal" class="nav__link" type="submit">
-                  <ion-icon name="calendar-outline" class="nav__icon"></ion-icon>
-                  <span class="nav__name">My Calendar</span>
-                </a>
-              </form>
-              <form action="/list" method="post">
-                <a href="/list" class="nav__link" type="submit">
-                  <ion-icon name="checkbox-outline" class="nav__icon"></ion-icon>
-                  <span class="nav__name">To-do List</span>
-                </a>
-              </form>
-              <form action="/logout" method="post">
-                <a class="nav__link" href="/logout" role="button" type="submit">
-                  <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
-                  <span class="nav__name">Log Out</span>
-                </a>
-              </form>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </form>
-  </div>
-
-  <div class="body-pd column">
-      <div class="box" id="heading">
-        <h1 style="color: white;">My tasks</h1>
-        <p style="color: white;">click checkbox to delete task</p>
-      </div>
-
-      <div class="box">
-        <% for(let i = 0; i < newListItems.length; i ++) { %>
-        <form action="/delete" method="post">
-          <div class="item">
-            <input type="checkbox" name="checkbox" value="<%=newListItems[i]._id%>" onChange="this.form.submit()">
-            <p><%= newListItems[i].item %></p>
-          </div>
         </form>
-        <% } %>
-      </div>
     </div>
 
-  <div class="column">
-    <div class="box" id="heading">
-      <h1 style="color: white;">Add a new task</h1>
+    <div class="body-pd column">
+        <div class="box" id="heading">
+            <h1 style="color: white;">My tasks</h1>
+            <p style="color: white;">click checkbox to delete task</p>
+        </div>
+
+        <div class="box">
+            <% for(let i = 0; i < newListItems.length; i ++) { %>
+                <form action="/delete" method="post">
+                    <div class="item">
+                        <input type="checkbox" name="checkbox" value="<%=newListItems[i]._id%>" onChange="this.form.submit()">
+                        <p>
+                            <%= newListItems[i].item %>
+                        </p>
+                    </div>
+                </form>
+                <% } %>
+        </div>
     </div>
 
     <div class="column">
-      <form action="/list" method="post">
-        <p class="taskBox">
-          <input type="text" name="newItem" placeholder="New task" autocomplete="off">
-          <input type="date" name="date" autocomplete="off" required="reqiored">
-        </p>
-        <p></p>
-        <p class="taskBox">
-          <textarea id="content" class="resize" rows="50" cols="72" style="border: none" placeholder="Task Descriptions"></textarea>
-        </p>
-        <p></p>
-        <p class="eventType">Event Type:
-          <select name="type">
+        <div class="box" id="heading">
+            <h1 style="color: white;">Add a new task</h1>
+        </div>
+
+        <div class="column">
+            <form action="/list" method="post">
+                <p class="taskBox">
+                    <input type="text" name="newItem" placeholder="New task" autocomplete="off">
+                    <input type="date" name="date" autocomplete="off" required="reqiored">
+                </p>
+                <p></p>
+                <p class="taskBox">
+                    <textarea id="content" class="resize" rows="50" cols="72" placeholder="Task Descriptions"></textarea>
+                </p>
+                <p></p>
+                <p class="eventType">Event Type:
+                    <select name="type">
             <option value="event">event</option>
             <option value="birthday">birthday</option>
             <option value="holiday">holiday</option>
           </select>
-        </p>
-        <p></p>
-        <div class="box">
-          <button class="button" type="submit" name="Addbutton">+ Add New Task</button>
+                </p>
+                <p></p>
+                <div class="box">
+                    <button class="button" type="submit" name="Addbutton">+ Add New Task</button>
+                </div>
         </div>
+        </form>
     </div>
-    </form>
-  </div>
 
 
-  </div>
-  </div>
+    </div>
+    </div>
 
-  <script>
-    $(function() {
-      var textArea = $('#content'),
-        hiddenDiv = $(document.createElement('div')),
-        content = null;
+    <script>
+        $(function() {
+            var textArea = $('#content'),
+                hiddenDiv = $(document.createElement('div')),
+                content = null;
 
-      textArea.addClass('noscroll');
-      hiddenDiv.addClass('hiddendiv');
+            textArea.addClass('noscroll');
+            hiddenDiv.addClass('hiddendiv');
 
-      $(textArea).after(hiddenDiv);
+            $(textArea).after(hiddenDiv);
 
-      textArea.on('keyup', function() {
-        content = $(this).val();
-        content = content.replace(/\n/g, '<br>');
-        hiddenDiv.html(content + '<br class="lbr">');
-        $(this).css('height', hiddenDiv.height());
-      });
-    });
-  </script>
+            textArea.on('keyup', function() {
+                content = $(this).val();
+                content = content.replace(/\n/g, '<br>');
+                hiddenDiv.html(content + '<br class="lbr">');
+                $(this).css('height', hiddenDiv.height());
+            });
+        });
+    </script>
 
-  <!--Ionicons-->
-  <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+    <!--Ionicons-->
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
-  <!--Main JS-->
-  <script src="nav.js"></script>
+    <!--Main JS-->
+    <script src="nav.js"></script>
 
 </body>
 

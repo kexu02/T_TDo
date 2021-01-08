@@ -140,6 +140,7 @@ textarea {
     font-family: 'Ubuntu', sans-serif;
     color: grey;
     opacity: 1;
+    border-color: #f1976a;
 }
 
 .noscroll {
