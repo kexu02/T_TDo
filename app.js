@@ -165,8 +165,16 @@ app.post("/signUp", function(req, res) {
 // calender
 app.get("/cal", function(req, res) {
     if (req.isAuthenticated()) {
-        User.find({}, function(err, foundItems) {
-            res.render("cal", { taskList: foundItems });
+        Task.find({ user: req.user.id }, function(err, foundItems) {
+            User.findById(req.user.id, function(err, foundUser) {
+                if (!err) {
+                    if (foundUser) {
+                        foundUser.list = foundItems;
+                        foundUser.save();
+                        res.render("cal", { taskList: foundItems });
+                    }
+                }
+            });
         });
     } else {
         res.redirect("/signIn");
