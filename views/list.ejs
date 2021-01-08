@@ -48,22 +48,24 @@
       </div>
     </form>
   </div>
-  <div class="body-pd">
-    <div class="box column">
-      <h1 id="heading">My tasks</h1>
-      <p>click checkbox to delete task</p>
+
+  <div class="body-pd column">
+      <div class="box" id="heading">
+        <h1>My tasks</h1>
+        <p>click checkbox to delete task</p>
+      </div>
+
+      <div class="box">
+        <% for(let i = 0; i < newListItems.length; i ++) { %>
+        <form action="/delete" method="post">
+          <div class="item">
+            <input type="checkbox" name="checkbox" value="<%=newListItems[i]._id%>" onChange="this.form.submit()">
+            <p><%= newListItems[i].item %></p>
+          </div>
+        </form>
+        <% } %>
+      </div>
     </div>
-    <div class="box">
-      <% for(let i = 0; i < newListItems.length; i ++) { %>
-      <form action="/delete" method="post">
-        <div class="item">
-          <input type="checkbox" name="checkbox" value="<%=newListItems[i]._id%>" onChange="this.form.submit()">
-          <p><%= newListItems[i].item %></p>
-        </div>
-      </form>
-      <% } %>
-    </div>
-  </div>
 
   <div class="column">
     <div class="box" id="heading">
