@@ -59,8 +59,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="evo-calendar.js"></script>
         <script>
-            const localTaskList = <%- taskList %>;
-            $(document).ready(function() {
+            $(document).ready(function(const localTaskList = <%- taskList %>) {
                 $('#calendar').evoCalendar({
                     theme: "Orange Coral"
                 })
@@ -73,8 +72,6 @@
                         type: localTaskList[i].type
                     });
                 }
-
-
             })
         </script>
 
