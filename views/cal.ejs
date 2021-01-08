@@ -54,25 +54,23 @@
     <!--create a calendar-->
     <div id="calendar"></div>
 
-
     <div class="box">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="evo-calendar.js"></script>
         <script>
-            const localTaskList = '<%- JSON.stringify(taskList) %>';
+            const localTaskList = <%- taskList %>;
             $(document).ready(function() {
                 $('#calendar').evoCalendar({
                     theme: "Orange Coral"
                 })
-
                 for (let i = 0; i < localTaskList.length; i++) {
                     $('#calendar').evoCalendar('addCalendarEvent', {     
-                        id: 'localTaskList[i]._id',
-                        name: 'localTaskList[i].item',
-                        description: 'localTaskList[i].description',
-                        date: 'localTaskList[i].date',
-                        type: 'localTaskList[i].type'
+                        id: localTaskList[i]._id,
+                        name: localTaskList[i].item,
+                        description: localTaskList[i].description,
+                        date: localTaskList[i].date,
+                        type: localTaskList[i].type
                     });
                 }
 

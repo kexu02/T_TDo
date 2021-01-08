@@ -171,7 +171,7 @@ app.get("/cal", function(req, res) {
                     if (foundUser) {
                         foundUser.list = foundItems;
                         foundUser.save();
-                        res.render("cal", { taskList: foundItems });
+                        res.render("cal", { taskList: JSON.stringify(foundItems) });
                     }
                 }
             });
