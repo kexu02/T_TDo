@@ -66,15 +66,19 @@
                     theme: "Orange Coral"
                 })
 
+                $('#calendar').evoCalendar('removeCalendarEvent', 'testing');
+
                 for (let i = 0; i < localTaskList.length; i++) {
                     $('#calendar').evoCalendar('addCalendarEvent', {     
-                        id: 'testing',
-                        name: 'Test',
-                        description: 'This is a test',
-                        date: 'January 1, 2021',
-                        type: 'event'
+                        id: localTaskList[i]._id,
+                        name: localTaskList[i].item,
+                        description: localTaskList[i].description,
+                        date: localTaskList[i].date,
+                        type: localTaskList[i].type
                     });
                 }
+
+
             })
         </script>
 
