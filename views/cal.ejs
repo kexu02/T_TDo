@@ -70,11 +70,11 @@
 
                 for (let i = 0; i < localTaskList.length; i++) {
                     $('#calendar').evoCalendar('addCalendarEvent', {     
-                        id: localTaskList[i]._id,
-                        name: localTaskList[i].item,
-                        description: localTaskList[i].description,
-                        date: localTaskList[i].date,
-                        type: localTaskList[i].type
+                        id: '<%- JSON.stringify(taskList[i]._id) %>',
+                        name: '<%- JSON.stringify(taskList[i].item) %>',
+                        description: '<%- JSON.stringify(taskList[i].description) %>',
+                        date: '<%- JSON.stringify(taskList[i].date) %>',
+                        type: '<%- JSON.stringify(taskList[i].type) %>'
                     });
                 }
 
