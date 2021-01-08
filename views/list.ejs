@@ -60,10 +60,8 @@
       <form action="/delete" method="post">
         <div class="item">
           <input type="checkbox" name="checkbox" value="<%=newListItems[i]._id%>" onChange="this.form.submit()">
-          <p>
-            <%= newListItems[i].item %> on
-            <%= newListItems[i].date %>
-          </p>
+          <p><%= newListItems[i].item %></p>
+            <p><%= newListItems[i].date %></p>
         </div>
       </form>
       <% } %>
