@@ -104,6 +104,7 @@ a {
 
 .nav__link:hover {
     padding: 0.5rem;
+    color: white;
     background-color: var(--first-color);
 }
 
