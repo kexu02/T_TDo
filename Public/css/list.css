@@ -106,6 +106,8 @@ footer {
     background: white;
     box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
     text-align: center;
+    position: relative;
+    float: left;
 }
 
 .dateBox {
@@ -120,7 +122,7 @@ footer {
 
 .eventType {
     position: relative;
-    float: right;
+    float: left;
     max-width: 100%;
 }
 
