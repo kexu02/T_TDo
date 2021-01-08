@@ -165,7 +165,7 @@ app.post("/signUp", function(req, res) {
 // calender
 app.get("/cal", function(req, res) {
     if (req.isAuthenticated()) {
-        Task.find({}, function(err, foundItems) {
+        User.find({}, function(err, foundItems) {
             res.render("cal", { taskList: foundItems });
         });
     } else {
@@ -174,7 +174,7 @@ app.get("/cal", function(req, res) {
 });
 
 // to do list
-app.get("/list", function(req, res) {
+/*app.get("/list", function(req, res) {
   if (req.isAuthenticated()) {
        Task.find({user: req.user.id}, function(err, foundItems) {
          User.findById(req.user.id, function(err, foundUser) {
@@ -182,7 +182,7 @@ app.get("/list", function(req, res) {
              if (foundUser) {
                foundUser.list = foundItems;
                foundUser.save();
-              res.render("list", { newListItems: foundItems });
+               res.render("list", { newListItems: foundItems });
              }
            }
          });
@@ -190,20 +190,20 @@ app.get("/list", function(req, res) {
   } else {
     res.redirect("/signIn");
   }
- });
+});*/
+app.get("/list", function(req, res) {
+    Task.find({}, function(err, foundItems) {
+        res.render("list", { taskList: foundItems });
+    });
+
+});
 
 app.post("/list", function(req, res) {
     console.log(req.User);
     const taskItem = req.body.newItem;
-    const description = req.body.description;
-    const date = req.body.date;
-    const type = req.body.type;
     const task = new Task({
         user: req.user.id,
-        item: taskItem,
-        description : description,
-        date: date,
-        type: type
+        item: taskItem
     });
     task.save();
     res.redirect("/list");
