@@ -239,7 +239,10 @@ app.post("/list", function(req, res) {
     const type = req.body.type;
     const task = new Task({
         user: req.user.id,
-        item: taskItem
+        item: taskItem,
+        description: description,
+        date: date,
+        type: type
     });
     task.save();
     res.redirect("/list");
