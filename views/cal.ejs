@@ -53,35 +53,36 @@
 
     <!--create a calendar-->
     <div id="calendar"></div>
-    <%=const localTaskList = taskList %>;
 
-        <div class="box">
 
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            <script src="evo-calendar.js"></script>
-            <script>
-                $(document).ready(function() {
-                    $('#calendar').evoCalendar({
-                        theme: "Orange Coral"
-                    })
+    <div class="box">
 
-                    for (let i = 0; i < localTaskList.length; i++) {
-                        $('#calendar').evoCalendar('addCalendarEvent', {     
-                            id: 'testing',
-                            name: 'Test',
-                            description: 'This is a test',
-                            date: 'January 1, 2021',
-                            type: 'event'
-                        });
-                    }
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="evo-calendar.js"></script>
+        <script>
+            const localTaskList = '<%- JSON.stringify(taskList) %>';
+            $(document).ready(function() {
+                $('#calendar').evoCalendar({
+                    theme: "Orange Coral"
                 })
-            </script>
 
-            <!--Ionicons-->
-            <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+                for (let i = 0; i < localTaskList.length; i++) {
+                    $('#calendar').evoCalendar('addCalendarEvent', {     
+                        id: 'testing',
+                        name: 'Test',
+                        description: 'This is a test',
+                        date: 'January 1, 2021',
+                        type: 'event'
+                    });
+                }
+            })
+        </script>
 
-            <!--Main JS-->
-            <script src="nav.js"></script>
+        <!--Ionicons-->
+        <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+
+        <!--Main JS-->
+        <script src="nav.js"></script>
 
 </body>
 
