@@ -69,12 +69,15 @@
         </div>
     </div>
 
-    <div class="column">
+    <div class="column body-pd">
+        <div class="box" id="heading">
+            <h1 style="color: white;">Add a new task</h1>
+        </div>
         <form action="/list" method="post">
             <div class="divider"></div>
             <p class="taskBox">
                 <input type="text" name="newItem" placeholder="New task" autocomplete="off">
-                <input type="date" name="date" autocomplete="off" required="reqiored">
+                <input type="date" name="date" autocomplete="off" required="required">
             </p>
             <div class="divider"></div>
             <p class="taskBox">
