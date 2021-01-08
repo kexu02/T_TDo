@@ -20,12 +20,12 @@
 
 html,
 body {
-    padding: 0;
+    padding: 5;
     margin: 0;
 }
 
 body {
-    font-family: 'Source Sans Pro';
+    font-family: 'Ubuntu', sans-serif;
 }
 
 input:focus,
