@@ -6,36 +6,48 @@
     <link href="css/list.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="nav.css" />
     <link rel="icon" href="images/favicon.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
-<body>
-    <nav class="navbar navbar-light" style="background-color: #f1976a;">
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="text-my-own-color nav-link active" href="homepage.html">T_TDO</a>
-            </li>
-            <li class="nav-item">
-                <form action="/cal" method="post">
-                    <a class="text-my-own-color nav-link active" href="/cal">My Calendar</a>
-                </form>
-            </li>
-            <li class="nav-item">
-                <form action="/list" method="post">
-                    <a class="text-my-own-color nav-link active" href="/list">To-Do List</a>
-                </form>
-            </li>
-            <li class="nav-item">
-                <form action="/logout" method="post">
-                    <a class="text-my-own-color nav-link active" href="/logout">Logout</a>
-                </form>
-            </li>
-        </ul>
-    </nav>
+
+    <body id="body-pd">
+        <div data-role="header">
+          <form action="/" method="post">
+            <div class="l-navbar" id="navbar">
+              <nav class="nav">
+                <div>
+                  <div class="nav__brand">
+                    <ion-icon name="menu-outline" class="nav__icon nav__toggle" id="nav-toggle"></ion-icon>
+                    <a href="homepage.html" class="nav__logo">T_TDo</a>
+                  </div>
+                  <div>
+                    <form action="/cal" method="post">
+                      <a href="/cal" class="nav__link" type="submit">
+                        <ion-icon name="calendar-outline" class="nav__icon"></ion-icon>
+                        <span class="nav__name">My Calendar</span>
+                      </a>
+                    </form>
+                    <form action="/list" method="post">
+                      <a href="/list" class="nav__link" type="submit">
+                        <ion-icon name="checkbox-outline" class="nav__icon"></ion-icon>
+                        <span class="nav__name">To-do List</span>
+                      </a>
+                    </form>
+                    <form action="/logout" method="post">
+                      <a class="nav__link" href="/logout" role="button" type="submit">
+                        <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                        <span class="nav__name">Log Out</span>
+                      </a>
+                    </form>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </form>
+        </div>
 
     <div class="body-pd column">
         <div class="box" id="heading">
@@ -44,11 +56,10 @@
         </div>
 
         <div class="box">
-            <% for(let i=0; i < newListItems.length; i ++) { %>
+            <% for(let i = 0; i < newListItems.length; i ++) { %>
                 <form action="/delete" method="post">
                     <div class="item">
-                        <input type="checkbox" name="checkbox" value="<%=newListItems[i]._id%>"
-                            onChange="this.form.submit()">
+                        <input type="checkbox" name="checkbox" value="<%=newListItems[i]._id%>" onChange="this.form.submit()">
                         <p>
                             <%= newListItems[i].item %>
                         </p>
@@ -70,16 +81,15 @@
             </p>
             <div class="divider"></div>
             <p class="taskBox">
-                <textarea id="content" name="description" class="resize" rows="50" cols="72" style="border: none"
-                    placeholder="Task Descriptions"></textarea>
+                <textarea id="content" name="description" class="resize" rows="50" cols="72" style="border: none" placeholder="Task Descriptions"></textarea>
             </p>
             <div class="divider"></div>
             <p class="eventType">Event Type:
                 <select name="type">
-                    <option value="event">event</option>
-                    <option value="birthday">birthday</option>
-                    <option value="holiday">holiday</option>
-                </select>
+          <option value="event">event</option>
+          <option value="birthday">birthday</option>
+          <option value="holiday">holiday</option>
+        </select>
             </p>
             <div class="box">
                 <button class="button" type="submit" name="Addbutton">+ Add New Task</button>
@@ -93,20 +103,17 @@
 
     <script>
         $(function() {
-            var textArea=$('#content'),
-                hiddenDiv=$(document.createElement('div')),
-                content=null;
-
+            var textArea = $('#content'),
+                hiddenDiv = $(document.createElement('div')),
+                content = null;
             textArea.addClass('noscroll');
             hiddenDiv.addClass('hiddendiv');
-
             $(textArea).after(hiddenDiv);
-
-            textArea.on('keyup',function() {
-                content=$(this).val();
-                content=content.replace(/\n/g,'<br>');
-                hiddenDiv.html(content+'<br class="lbr">');
-                $(this).css('height',hiddenDiv.height());
+            textArea.on('keyup', function() {
+                content = $(this).val();
+                content = content.replace(/\n/g, '<br>');
+                hiddenDiv.html(content + '<br class="lbr">');
+                $(this).css('height', hiddenDiv.height());
             });
         });
     </script>
