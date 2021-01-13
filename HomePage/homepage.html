@@ -53,6 +53,56 @@
     </form>
   </div>
 
+  <div>
+    <h1 style="color: #f1976a;">Welcome to T_TDO</h1>
+    <p style="color: #f1976a;">Click the menu on the left to edit your to-do list!</p>
+  </div>
+
+  <script>
+    $(function() {
+      var textArea = $('#content'),
+        hiddenDiv = $(document.createElement('div')),
+        content = null;
+
+      textArea.addClass('noscroll');
+      hiddenDiv.addClass('hiddendiv');
+
+      $(textArea).after(hiddenDiv);
+
+      textArea.on('keyup', function() {
+        content = $(this).val();
+        content = content.replace(/\n/g, '<br>');
+        hiddenDiv.html(content + '<br class="lbr">');
+        $(this).css('height', hiddenDiv.height());
+      });
+    });
+  </script>
+
+<div>
+  <h1 style="color: #f1976a;">Welcome to T_TDO</h1>
+  <p style="color: #f1976a;">Click the menu on the left to edit your to-do list!</p>
+</div>
+
+<script>
+  $(function() {
+    var textArea = $('#content'),
+      hiddenDiv = $(document.createElement('div')),
+      content = null;
+
+    textArea.addClass('noscroll');
+    hiddenDiv.addClass('hiddendiv');
+
+    $(textArea).after(hiddenDiv);
+
+    textArea.on('keyup', function() {
+      content = $(this).val();
+      content = content.replace(/\n/g, '<br>');
+      hiddenDiv.html(content + '<br class="lbr">');
+      $(this).css('height', hiddenDiv.height());
+    });
+  });
+</script>
+
   <!--Ionicons-->
   <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
