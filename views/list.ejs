@@ -21,7 +21,7 @@
           <div>
             <div class="nav__brand">
               <ion-icon name="menu-outline" class="nav__icon nav__toggle" id="nav-toggle"></ion-icon>
-              <a href="homepage.html" class="nav__logo">T_TDo</a>
+              <a href="homepage.html" class="nav__logo nav__link">T_TDo</a>
             </div>
             <div>
               <form action="/cal" method="post">
@@ -61,7 +61,7 @@
         <div class="item">
           <input type="checkbox" name="checkbox" value="<%=newListItems[i]._id%>" onChange="this.form.submit()">
           <p><%= newListItems[i].item %></p>
-            <p><%= newListItems[i].date %></p>
+          <p><%= newListItems[i].date %></p>
         </div>
       </form>
       <% } %>
@@ -95,10 +95,6 @@
         <button class="button" type="submit" name="Addbutton">+ Add New Task</button>
       </div>
     </form>
-  </div>
-
-
-  </div>
   </div>
 
   <script>
