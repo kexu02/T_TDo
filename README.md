@@ -5,4 +5,4 @@ T_TDO is a to-do list website that allows users to add tasks and display them in
 Visit https://ttdo.herokuapp.com/
 
 Login page:
-![Login page](pictures/login.png?raw=true)
+![Login page](pictures/login.PNG?raw=true)
